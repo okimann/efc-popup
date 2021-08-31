@@ -6,14 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body style="background: center center url('assets/elegancehk-screenshot.jpg'); background-size: cover; background-repeat: no-repeat; height: 100vh; width: 100vw; padding:0; margin: 0;">
+
+        <!-- start Popup notification -->
         <div id="notification" class="popup">
             <div id="popupOverlay" class="overlay fade-in-now"  style="opacity: 0;"></div>
             <div class="content fade-in-after" style="opacity: 0;">
                 <img src="/assets/efc-eng-chi-vertical-color.svg" title="Elegance Financial Communications Logo">
                     <h2>Welcome to Elegance Financial Communications<br>
                         歡迎來到精雅財經資訊有限公司</h2>
-                    <p>Please note our website will migrate to <a href="https://elegancehk.com" target="_blank">elegancehk.com</a> by end of 2021. Please check back soon.</p>
-                    <p>請留意我們的網站將於2021年12月遷移到<a href="https://elegancehk.com" target="_blank">elegancehk.com</a>。請稍後再回來查看。</p>
+                    <p>Please note our website will migrate to <a href="https://elegancehk.com" target="_blank">elegancehk.com</a> by fourth quarter of 2021. Please check back soon.</p>
+                    <p>請留意我們的網站將於2021年第4季遷移到<a href="https://elegancehk.com" target="_blank">elegancehk.com</a>。請稍後再回來查看。
                     <button id="closeModal" class="close" aria-label="Close">
                         <svg width="18" height="18" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="1.35355" y1="0.646447" x2="22.5668" y2="21.8596" stroke="black"/>
@@ -22,59 +24,61 @@
                     </button>
             </div>
         </div>
-    </body>
-    <script src="js/anime.min.js"></script>
-    <script>
-        var theNotification = document.getElementById('notification');
-        var closeButton = document.getElementById('closeModal');
-        var closeOverlay = document.getElementById('popupOverlay');
+        <script src="js/anime.min.js"></script>
+        <script>
+            var theNotification = document.getElementById('notification');
+            var closeButton = document.getElementById('closeModal');
+            var closeOverlay = document.getElementById('popupOverlay');
+    
+            closeButton.addEventListener("click", removeModal)
+            closeOverlay.addEventListener("click", removeModal)
+    
+            window.onload = function () {
+                animateNow();
+            };
+    
+            function animateNow() {
+                anime({
+                    targets: '.fade-in-now',
+                    opacity: [0, 1],
+                    easing: 'easeOutSine',
+                    duration: 300
+                });
+                anime({
+                    targets: '.fade-in-after',
+                    opacity: [0, 1],
+                    easing: 'easeOutSine',
+                    duration: 800,
+                    delay: 500
+                });
+            }
+    
+            function removeModal(){
+                theNotification.remove();
+            }
+        </script>
+        <style>
+            #notification {}
+            .popup{ width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+            .popup .content {position: relative; max-width: 32rem; background-image: linear-gradient(to right top, rgb(175, 145, 100), rgb(247, 243, 227), rgb(247, 243, 227)); padding: 2rem; text-align: center; z-index:1000;}
+            .popup .content .close {position: absolute; top: 15px; right: 15px; font-family:Arial, Helvetica, sans-serif; cursor: pointer; background: transparent; border: none;}
+            .popup .content img {margin: 2rem auto; height: 13rem;}
+            .popup .content h2 {font-family: Georgia, 'Times New Roman', Times, serif; color: #15ad91; font-size: 1.3em; line-height: 1.33; text-align: center; font-weight: normal;}
+            .popup .content p {font-family:Arial, Helvetica, sans-serif;  text-align: center; font-size: .8em; line-height: 1.75; font-weight: 300;}
+            .popup .content a {color: black; transition: color ease-in-out; transition-duration: 300ms;}
+            .popup .content a:hover {color: #15ad91;}
+            .popup .overlay {position: absolute; width: 100vw; height: 100vh; background: rgba(0,0,0,.25); z-index: 100;}
+    
+            @media screen and (max-width: 800px) {
+                .popup .content {margin: 2rem;}
+                /*.popup .content {max-width: 48rem;}*/
+                /*.popup .content img {margin: 2rem auto; height: 24rem;}
+                .popup .content h2 {font-family: Georgia, 'Times New Roman', Times, serif; color: #15ad91; font-size: 2.3em; line-height: 1.33; text-align: center; font-weight: normal;}
+                .popup .content p {font-family:Arial, Helvetica, sans-serif;  text-align: center; font-size: 1.8em; line-height: 1.75; font-weight: 300;}*/
+            }
+        </style>
 
-        closeButton.addEventListener("click", removeModal)
-        closeOverlay.addEventListener("click", removeModal)
+        <!-- end Popup notification -->
 
-        window.onload = function () {
-            animateNow();
-        };
-
-        function animateNow() {
-            anime({
-                targets: '.fade-in-now',
-                opacity: [0, 1],
-                easing: 'easeOutSine',
-                duration: 300
-            });
-            anime({
-                targets: '.fade-in-after',
-                opacity: [0, 1],
-                easing: 'easeOutSine',
-                duration: 800,
-                delay: 500
-            });
-        }
-
-        function removeModal(){
-            theNotification.remove();
-        }
-    </script>
-    <style>
-        #notification {}
-        .popup{ width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
-        .popup .content {position: relative; max-width: 32rem; background-image: linear-gradient(to right top, rgb(175, 145, 100), rgb(247, 243, 227), rgb(247, 243, 227)); padding: 2rem; text-align: center; z-index:1000;}
-        .popup .content .close {position: absolute; top: 15px; right: 15px; font-family:Arial, Helvetica, sans-serif; cursor: pointer; background: transparent; border: none;}
-        .popup .content img {margin: 2rem auto; height: 13rem;}
-        .popup .content h2 {font-family: Georgia, 'Times New Roman', Times, serif; color: #15ad91; font-size: 1.3em; line-height: 1.33; text-align: center; font-weight: normal;}
-        .popup .content p {font-family:Arial, Helvetica, sans-serif;  text-align: center; font-size: .8em; line-height: 1.75; font-weight: 300;}
-        .popup .content a {color: black; transition: color ease-in-out; transition-duration: 300ms;}
-        .popup .content a:hover {color: #15ad91;}
-        .popup .overlay {position: absolute; width: 100vw; height: 100vh; background: rgba(0,0,0,.25); z-index: 100;}
-
-        @media screen and (max-width: 800px) {
-            .popup .content {margin: 2rem;}
-            /*.popup .content {max-width: 48rem;}*/
-            /*.popup .content img {margin: 2rem auto; height: 24rem;}
-            .popup .content h2 {font-family: Georgia, 'Times New Roman', Times, serif; color: #15ad91; font-size: 2.3em; line-height: 1.33; text-align: center; font-weight: normal;}
-            .popup .content p {font-family:Arial, Helvetica, sans-serif;  text-align: center; font-size: 1.8em; line-height: 1.75; font-weight: 300;}*/
-        }
-    </style>
-            
+    </body> 
 </html>
